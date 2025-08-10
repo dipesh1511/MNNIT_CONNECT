@@ -21,7 +21,8 @@ import CreatePostPage from "./pages/createpost";
 import Suggestions from "./components/Suggestions";
 import ExperienceWall from "./pages/Experience";
 
-// Company pages
+// Company page
+
 import CompanyHome from "./pages/company/home";
 import CompanyJobs from "./pages/company/showjob";
 import CompanyPostJob from "./pages/company/postjob";
@@ -45,8 +46,7 @@ import MyConnections from "./components/myconnection";
 import About from "./pages/About";
 import Feedback from "./pages/Feedback";
 
-
-const App = () => { 
+const App = () => {
   const location = useLocation();
   const { user } = useSelector((state) => state.auth); // Get user from Redux state
 
@@ -75,7 +75,7 @@ const App = () => {
 
   return (
     <>
-    {isCompanyRoute ? <CompanyNavbar /> : <NavBar />}
+      {isCompanyRoute ? <CompanyNavbar /> : <NavBar />}
 
       <Routes>
         {/* Public Routes (Available to all users) */}
@@ -92,24 +92,78 @@ const App = () => {
           </>
         )}
 
-        <Route  path="/home"  element={user ? <Home /> : <Navigate to="/login" replace />}/>
-        <Route  path="/"  element={user ? <Home /> : <Navigate to="/login" replace />}/>
-        <Route  path="/messages"  element={user ? <Messages /> : <Navigate to="/login" replace />}/>
-        <Route  path="/notifications"  element={user ? <Notifications /> : <Navigate to="/login" replace />}/>
-        <Route  path="/jobs"  element={user ? <Jobs /> : <Navigate to="/login" replace />}/>
-        <Route  path="/updateprofile"  element={user ? <UpdateProfile /> : <Navigate to="/login" replace />}/>
-        <Route  path="/jobsapplied"  element={user ? <JobsApplied /> : <Navigate to="/login" replace />}/>
-        <Route  path="/search"  element={user ? <SearchBar /> : <Navigate to="/login" replace />}/>
-        <Route  path="/connections"  element={user ? <Connections /> : <Navigate to="/login" replace />}/>
-        <Route  path="/showjob/:jobId"  element={user ? <JobDetailsPage /> : <Navigate to="/login" replace />}/>
-        <Route  path="/createpost"  element={user ? <CreatePostPage /> : <Navigate to="/login" replace />}/>
-        <Route  path="/chat"  element={user ? <Chatbot /> : <Navigate to="/login" replace />}/>
-        <Route path="/lobby" element={user ? <Lobby /> : <Navigate to="/login" replace />}/>
-        <Route  path="/suggestions"  element={user ? <Suggestions /> : <Navigate to="/login" replace />}/>
-        <Route  path="/MyConnection"  element={user ? <MyConnections /> : <Navigate to="/login" replace />}/>
-        <Route  path="/about"  element={user ? <About /> : <Navigate to="/login" replace />}/>
-        <Route  path="/feedback"  element={user ? <Feedback /> : <Navigate to="/login" replace />}/>
-          <Route  path="/experience"  element={user ? <ExperienceWall /> : <Navigate to="/login" replace />}/>
+        <Route
+          path="/home"
+          element={user ? <Home /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/"
+          element={user ? <Home /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/messages"
+          element={user ? <Messages /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/notifications"
+          element={user ? <Notifications /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/jobs"
+          element={user ? <Jobs /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/updateprofile"
+          element={user ? <UpdateProfile /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/jobsapplied"
+          element={user ? <JobsApplied /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/search"
+          element={user ? <SearchBar /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/connections"
+          element={user ? <Connections /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/showjob/:jobId"
+          element={user ? <JobDetailsPage /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/createpost"
+          element={user ? <CreatePostPage /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/chat"
+          element={user ? <Chatbot /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/lobby"
+          element={user ? <Lobby /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/suggestions"
+          element={user ? <Suggestions /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/MyConnection"
+          element={user ? <MyConnections /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/about"
+          element={user ? <About /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/feedback"
+          element={user ? <Feedback /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/experience"
+          element={user ? <ExperienceWall /> : <Navigate to="/login" replace />}
+        />
 
         {/* Restrict company routes based on user role */}
         {user?.role !== "user" ? (
@@ -119,12 +173,17 @@ const App = () => {
             <Route path="/company/postjob" element={<CompanyPostJob />} />
             <Route path="/company/login" element={<CompanyLogin />} />
             <Route path="/company/signup" element={<CompanyRegistration />} />
-            <Route path="/company/lobby" element={<Lobby/>} />
-            <Route   path="/company/updateprofile"   element={<UpdateCompanyDetails />} />
+            <Route path="/company/lobby" element={<Lobby />} />
+            <Route
+              path="/company/updateprofile"
+              element={<UpdateCompanyDetails />}
+            />
             <Route path="/company/profile" element={<CompanyProfile />} />
             <Route path="/company/:jobId" element={<CompanyJobDetailsPage />} />
           </>
-        ) : (  <Route path="/company/*" element={<Navigate to="/login" replace />} />  )}
+        ) : (
+          <Route path="/company/*" element={<Navigate to="/login" replace />} />
+        )}
 
         {/* 404 Page for non-existent routes */}
         <Route path="*" element={<NotFound />} />
